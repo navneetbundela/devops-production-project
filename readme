@@ -1,0 +1,84 @@
+# Production Grade DevOps Platform
+
+This project demonstrates a **production-grade DevOps platform** that includes infrastructure automation, container orchestration, CI/CD pipelines, security practices, monitoring, and centralized logging.
+
+The goal is to simulate how real organizations design and operate cloud-native systems.
+
+---
+
+# Project Components
+
+## Infrastructure
+
+Infrastructure will be provisioned using Terraform.
+
+Resources include:
+
+- VPC
+- subnets
+- internet gateway
+- NAT gateway
+- EKS cluster
+- container registry
+
+---
+
+## Application
+
+A Python Flask application will provide basic functionality:
+
+- user registration
+- user login
+- authentication using JWT
+- persistent database storage
+
+---
+
+## Containerization
+
+The application will be packaged into Docker containers.
+
+---
+
+## Kubernetes
+
+The application will be deployed to Kubernetes using Helm charts.
+
+---
+
+## CI/CD
+
+CI/CD pipelines will automate:
+
+- build
+- testing
+- container image creation
+- security scanning
+- deployment
+
+---
+
+## Observability
+
+The platform will implement observability using:
+
+- Prometheus
+- Grafana
+- Loki
+- Alertmanager
+
+---
+
+## Security
+
+Security practices include:
+
+- IAM access control
+- container vulnerability scanning
+- secrets management
+- Kubernetes RBAC
+- network policies
+
+---
+
+# Project Structure
