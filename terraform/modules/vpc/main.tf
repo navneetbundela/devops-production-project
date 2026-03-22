@@ -24,7 +24,7 @@ resource "aws_subnet" "public_subnets" {
     vpc_id = aws_vpc.main.id
     cidr_block = var.public_subnets[count.index]
 
-    availability_zone = "$(var.region)$(count.index == 0 ? "a" : "b")"
+    availability_zone = "${var.region}${count.index == 0 ? "a" : "b"}"
 
     tags = {
       Name = "public-subnet-$(count.index)"
@@ -39,7 +39,7 @@ resource "aws_subnet" "private_subnets" {
 
     cidr_block = var.private_subnets[count.index]
 
-    availability_zone = "$(var.region)$(count.index == 0 ? "a" : "b")"
+    availability_zone = "${var.region}${count.index == 0 ? "a" : "b"}"
 
     tags = {
 
@@ -48,12 +48,12 @@ resource "aws_subnet" "private_subnets" {
   
 }
 
-resource "aws_eip" "nat" {
+resource "aws_eip" "eip_nat" {
     domain = "vpc"
   
 }
 resource "aws_nat_gateway" "nat" {
-    allocation_id = aws_eip.nat.id
+    allocation_id = aws_eip.eip_nat.id
 
     subnet_id = aws_subnet.public_subnets[0].id
 
@@ -93,7 +93,6 @@ resource "aws_route_table" "private" {
     }
 }
 
-
 resource "aws_route_table_association" "public_assoc" {
     count = length(aws_subnet.public_subnets)
 
@@ -106,6 +105,6 @@ resource "aws_route_table_association" "private_assoc" {
     count = length(aws_subnet.private_subnets)
 
     subnet_id = aws_subnet.private_subnets[count.index].id
-    route_table_id = aws_route_table.private
+    route_table_id = aws_route_table.private.id
     
 }

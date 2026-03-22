@@ -1,0 +1,8 @@
+notes.txt
+**/.terraform/*
+.terraformrc
+terraform.rc
+*.tfvars
+*.tfvars.json
+**/.terraform.lock.hcl
+**/terraform.tfstate
