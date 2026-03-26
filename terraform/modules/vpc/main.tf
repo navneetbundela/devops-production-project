@@ -28,6 +28,8 @@ resource "aws_subnet" "public_subnets" {
 
     tags = {
       Name = "public-subnet-$(count.index)"
+    "kubernetes.io/role/elb" = "1"
+    "kubernetes.io/cluster/devops-platform" = "shared"
     }
     
 }
@@ -44,6 +46,8 @@ resource "aws_subnet" "private_subnets" {
     tags = {
 
         Name = "private-subnet-$(count.index)"
+          "kubernetes.io/role/internal-elb" = "1"
+  "kubernetes.io/cluster/devops-platform" = "shared"
     }
   
 }
@@ -52,6 +56,7 @@ resource "aws_eip" "eip_nat" {
     domain = "vpc"
   
 }
+
 resource "aws_nat_gateway" "nat" {
     allocation_id = aws_eip.eip_nat.id
 
@@ -90,6 +95,7 @@ resource "aws_route_table" "private" {
 
     tags = {
       Name = "private-rt"
+      
     }
 }
 

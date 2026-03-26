@@ -25,7 +25,6 @@ resource "aws_iam_role_policy_attachment" "cluster_policy" {
   
 }
 
-
 resource "aws_eks_cluster" "cluster" {
   name = "cluster"
 
@@ -76,8 +75,6 @@ resource "aws_iam_role_policy_attachment" "registry_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
 
-
-
 resource "aws_eks_node_group" "node_group" {
 
     subnet_ids = var.subnet_ids
@@ -94,4 +91,3 @@ resource "aws_eks_node_group" "node_group" {
     depends_on = [ aws_iam_role_policy_attachment.cni_policy, aws_iam_role_policy_attachment.registry_policy, aws_iam_role_policy_attachment.worker_node_policy ]
   
 }
-

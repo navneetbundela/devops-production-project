@@ -6,3 +6,5 @@ terraform.rc
 *.tfvars.json
 **/.terraform.lock.hcl
 **/terraform.tfstate
+*/terraform.tfstate.backup
+devops_app.zip
